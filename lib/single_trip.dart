@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/details.dart';
 import 'package:ticket_app/homepage.dart';
-import 'package:intl/intl.dart';
+
 
 class SingleTrip extends StatefulWidget {
   const SingleTrip({Key? key}) : super(key: key);
@@ -30,53 +30,48 @@ class _SingleTripState extends State<SingleTrip> {
           Navigator.pop(context);
         }, icon: Icon(Icons.arrow_back_ios_new,size: 25,),),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(child: Image.asset("assets/plane.jpg",fit: BoxFit.fill,),height: 225,),
-            Expanded(
-              child: Container(margin: EdgeInsets.only(left: 25,right: 25),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(child: Image.asset("assets/plane.jpg",fit: BoxFit.fill,),height: 225,),
+              Container(margin: EdgeInsets.only(left: 25,right: 25),
                 child: Column(
                   children: [
                   Row(
                     children: [
-                      Container(
-                        padding:EdgeInsets.all(0),
-                        child: SizedBox(
-                          height:20,
-                          width: 78,
-                          child: ElevatedButton(
-                            onPressed:()=> {
-                              setState((){
-                                _hasBeenPressed = !_hasBeenPressed ;
-                                if(_hasBeenPressed == true){
-                                  _hasPressed=false;
-                                }
-                              })
-                            },
-                            style: ElevatedButton.styleFrom(elevation:0, backgroundColor: _hasBeenPressed ? Colors.blue : Colors.white60),
-                            child: Container(margin: EdgeInsets.all(0),
-                                padding: EdgeInsets.all(0)
-                                ,child: Text("Single trip",style: TextStyle(fontSize: 10,color: Color.fromARGB(255, 227, 227, 227)),)),),
-                        ),
+                      SizedBox(
+                        height:20,
+                        width: 88,
+                        child: ElevatedButton(
+                          onPressed:()=> {
+                            setState((){
+                              _hasBeenPressed = !_hasBeenPressed ;
+                              if(_hasBeenPressed == true){
+                                _hasPressed=false;
+                              }
+                            })
+                          },
+                          style: ElevatedButton.styleFrom(elevation:0, backgroundColor: _hasBeenPressed ? Colors.blue : Colors.white60),
+                          child: Text("Single trip",style: TextStyle(fontSize: 10,color: Color.fromARGB(255, 227, 227, 227)),),),
                       ),
-                      Container(margin: EdgeInsets.only(left: 13),
-                        child: SizedBox(
-                          height:20,
-                          width: 80,
-                          child: ElevatedButton(
-                            onPressed: () =>{
-                              setState(() {
-                                _hasPressed = !_hasPressed ;
-                                if(_hasPressed == true){
-                                  _hasBeenPressed=false;
-                                }
-                              })
-                            },
-                            style: ElevatedButton.styleFrom(elevation:0,backgroundColor: _hasPressed ? Colors.blue : Colors.white60,),
-                            child: Text("Round trip",style: TextStyle(fontSize: 10,color: Color.fromARGB(255, 227, 227, 227)),),),
-                        ),
+                      SizedBox(width: 10,),
+                      SizedBox(
+                        height:20,
+                        width: 88,
+                        child: ElevatedButton(
+                          onPressed: () =>{
+                            setState(() {
+                              _hasPressed = !_hasPressed ;
+                              if(_hasPressed == true){
+                                _hasBeenPressed=false;
+                              }
+                            })
+                          },
+                          style: ElevatedButton.styleFrom(elevation:0,backgroundColor: _hasPressed ? Colors.blue : Colors.white60,),
+                          child: Text("Round trip",style: TextStyle(fontSize: 10,color: Color.fromARGB(255, 227, 227, 227)),),),
                       ),
+
                     ],
                   ),
                   Column(
@@ -137,8 +132,9 @@ class _SingleTripState extends State<SingleTrip> {
                     ],
                   ),
                 ],),
-              ),flex: 3,),
-          ],
+              ),
+            ],
+          ),
         ),
         endDrawer: Drawer(
           child: ListView(
