@@ -6,7 +6,6 @@ import 'package:ticket_app/API_CRUD/update_delete.dart';
 import 'package:ticket_app/hotel_api.dart';
 
 class Update extends StatefulWidget {
-
   Update(this.map);
   Map? map;
 
@@ -15,7 +14,6 @@ class Update extends StatefulWidget {
 }
 
 class _UpdateState extends State<Update> {
-
   var formkey = GlobalKey<FormState>();
 
   var nameController = TextEditingController();
@@ -24,7 +22,6 @@ class _UpdateState extends State<Update> {
   var avatarController = TextEditingController();
 
   @override
-
   void initState() {
     super.initState();
     nameController.text = widget.map == null ? '' : widget.map!['name'];
@@ -32,10 +29,14 @@ class _UpdateState extends State<Update> {
     priceController.text = widget.map == null ? '' : widget.map!['price'];
     avatarController.text = widget.map == null ? '' : widget.map!['avatar'];
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Information",style: TextStyle(color: Colors.black),),
+        title: Text(
+          "Information",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -100,7 +101,6 @@ class _UpdateState extends State<Update> {
                 controller: avatarController,
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -111,8 +111,10 @@ class _UpdateState extends State<Update> {
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
                             if (widget.map != null) {
-                              updatetUser(widget.map!['id']).then(
-                                  (value) => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ApiDemo(),)));
+                              updatetUser(widget.map!['id']).then((value) =>
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ApiDemo(),
+                                  )));
                             }
                           }
                         },
@@ -120,17 +122,19 @@ class _UpdateState extends State<Update> {
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red),
                         onPressed: () {
                           showDeleteAlert(widget.map!['id']);
                         },
-                        child: Text("Delete",style: TextStyle(color: Colors.white,fontSize: 15))),
+                        child: Text("Delete",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15))),
                   ),
-
                 ],
               ),
             ),
-
           ],
         ),
       ),
@@ -168,7 +172,9 @@ class _UpdateState extends State<Update> {
                   if (res.statusCode == 200) {
                     setState(() {});
                   }
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ApiDemo(),));
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ApiDemo(),
+                  ));
                 },
                 child: Text("yes")),
             TextButton(
@@ -189,10 +195,5 @@ class _UpdateState extends State<Update> {
     return response1;
   }
 
-  Future<dynamic> callApi() async {
-    http.Response res = await http
-        .get(Uri.parse('https://63edd3115e9f1583bdb6c3e2.mockapi.io/MyApi'));
-    return jsonDecode(res.body.toString());
-  }
-}
 
+}

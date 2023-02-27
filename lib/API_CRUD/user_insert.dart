@@ -18,12 +18,13 @@ class _InsertState extends State<Insert> {
   var priceController = TextEditingController();
   var avatarController = TextEditingController();
   @override
-
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Information",style: TextStyle(color: Colors.black),),
+        title: Text(
+          "Information",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -88,14 +89,16 @@ class _InsertState extends State<Insert> {
                 controller: avatarController,
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                   onPressed: () {
                     if (formkey.currentState!.validate()) {
-                        insertUser().then(
-                            (value) => Navigator.push(context, MaterialPageRoute(builder: (context) => ApiDemo(),)));
+                      insertUser().then((value) => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ApiDemo(),
+                          )));
                     }
                   },
                   child: Text("Submit")),
@@ -105,7 +108,6 @@ class _InsertState extends State<Insert> {
       ),
     );
   }
-
 
   Future<dynamic> insertUser() async {
     Map map = {};
@@ -120,5 +122,4 @@ class _InsertState extends State<Insert> {
     print(response1.body);
     return response1;
   }
-
 }
